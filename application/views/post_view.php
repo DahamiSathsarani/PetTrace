@@ -2,6 +2,16 @@
 
 <?php $this->load->view('header'); ?>
 
+<!-- Nav Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #6504b5;">
+    <div class="container">
+        <a class="navbar-brand" href="#">PetTrace</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
 <div class="container mt-5">
     <h1>Bootstrap JS Example</h1>
 
