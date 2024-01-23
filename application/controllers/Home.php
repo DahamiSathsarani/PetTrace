@@ -16,10 +16,10 @@ class Home extends CI_Controller {
 	}
 
     public function signup() {
-        $this->load->view('register');
+        $this->load->view('register_view');
     }
 
     public function signin() {
-        $this->load->view('login');
+        $this->load->view('login_view');
     }
 }
