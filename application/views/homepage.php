@@ -41,8 +41,8 @@
 			</button>
 		</div>
 		<div style="width: 20%;">
-			<a class="navbar-brand m-3" href="<?= base_url('index.php/register');?>">Sign Up</a>
-			<a class="navbar-brand m-3" href="<?= base_url('index.php/login');?>">Sign In</a>
+			<a class="navbar-brand m-3" href="<?= base_url('index.php/signup');?>">Sign Up</a>
+			<a class="navbar-brand m-3" href="<?= base_url('index.php/signin');?>">Sign In</a>
 		</div>
     </div>
 </nav>
