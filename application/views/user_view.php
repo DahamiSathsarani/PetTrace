@@ -24,29 +24,28 @@
     </div>
 </nav>
 
-<!-- Main body -->
+<!-- body -->
 <div class="container mt-5">
     <div class="row">
         <!-- Image column -->
         <div class="col-md-6">
-            <div class="card-image">
-                <img src="<?php echo base_url('assets/images/dog-2.jpg'); ?>" class="img-fluid" alt="Pet Image" width="500" height="200">
+            <div class="card-image" style="margin-left: 10%">
+                <img src="<?php echo base_url('assets/images/dog-2.jpg'); ?>" class="" alt="User Profile Image" width="50%" height="50%">
+            </div>
+            <br>
+            <div class="card" style="width: 80%">
+                <h3>Name</h3>
+                <ul>
+                    <li><strong>Adress</strong></li>
+                    <li><strong>Contact</strong></li>
+                </ul>
             </div>
         </div>
 
         <!-- Content column -->
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                <h2 class="mt-3">Pet Name</h2>
-                <ul>
-                    <li><strong>Breed:</strong> Labrador Retriever</li><br>
-                    <li><strong>Color:</strong> Brown</li><br>
-                    <li><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et urna eu lacus hendrerit fermentum.</li>
-                </ul>
-                <a class="btn btn-primary" href="<?= base_url('index.php/userView');?>">Contact</a>
-
-                </div>
+            <div>
+                <h2>Posts</h2>
             </div>
         </div>
     </div>
@@ -60,11 +59,5 @@
         </p>
     </div>
 </footer>
-
-<script>
-    document.getElementById('showAlertBtn').addEventListener('click', function() {
-        document.getElementById('successAlert').style.display = 'block';
-    });
-</script>
 
 <?php $this->load->view('footer'); ?>
