@@ -26,8 +26,8 @@
 
     i{
         color: #fff;
-        font-size: 30px
-    }
+        font-size: 30px;
+    }0
 
 </style>
 
@@ -85,6 +85,24 @@
     </div>
 </div>
 
+<div class="container mt-5">
+    <div class="row">
+        <?php foreach ($posts as $post): ?>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $post['pet_name']; ?></h5>
+                        <p class="card-text"><?= $post['color']; ?></p>
+                        <p class="card-text"><?= $post['breed']; ?></p>
+                        <!-- Add more fields as needed -->
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+
 <div class="footer mt-5">
     <div class="row" style="">
         <div class="col-md-6 text-light" style="width: 600px">
@@ -99,11 +117,12 @@
             <a href="#" class=""><i class="bi bi-instagram"></i></a>
         </div>
     </div>
-    <div class="row" style="">
-        <div class="">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-light" style="width: 600px">
             <p>&copy; 2024 PetTrace. All rights reserved.</p>
         </div>
     </div>
+    
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
