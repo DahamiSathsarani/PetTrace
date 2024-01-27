@@ -38,7 +38,6 @@ class User extends CI_Controller {
             );
 
             $result = $this->User_model->create_user($user);
-
             echo "Registration successful";
 
             } else {
@@ -52,6 +51,36 @@ class User extends CI_Controller {
         }
         }
         
+    }
+
+    public function userLogin(){
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+
+        echo "password  ", $password;
+
+        $this->load->model('User_model');
+        $user = $this->User_model->fetch_user($email);
+
+        if ($user) {
+            $user_id = $user->user_id;
+            $role_id = $user->role_id;
+
+            $this->load->model('Mapping_model');
+            $mapping = $this->Mapping_model->fetch_mapping($user_id,$role_id);
+            $storedHashedPassword = $mapping->password;
+
+            echo "storedHashedPassword  ", $storedHashedPassword;
+
+            if (password_verify($password, $storedHashedPassword)) {
+                echo "Login successful";
+            } else {
+                echo "Passwords do not match, login failed";
+            }
+        } else {
+            echo "User not found";
+        }
+
     }
 
 }
