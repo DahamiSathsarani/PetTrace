@@ -10,7 +10,7 @@
     }
 
     .image{
-      width: 40%;
+      width: 50%;
       height: 100%;
     }
 
@@ -133,14 +133,14 @@
                 type: "POST",
                 cache:false,
                 data: {
-                    email: email,
-                    password: password,
+                    $email: email,
+                    $password: password,
                 },
                 contentType: false,
                 processData: false, 
                 success: function(response) {
                     alert("Login successful");
-                    window.location.href = "http://localhost/PetTrace/index.php/Home/signin";
+                    window.location.href = "http://localhost/PetTrace/index.php/Home/user_dashboard";
                 },
                 error: function(request, status, error) {
                     alert("Login failed");
