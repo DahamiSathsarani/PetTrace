@@ -26,4 +26,17 @@ class User_model extends CI_Model {
         ));
     }
 
+    public function fetch_user($email){
+        $query = $this->db->select('*')
+            ->from('users')
+            ->where('email', $email)
+            ->get();
+        
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return null; 
+        }
+    }
+
 }
