@@ -11,6 +11,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+        $this->load->library('session');
         $this->load->model('Category_model');
         $this->load->model('Post_model');
 
@@ -33,15 +34,22 @@ class Home extends CI_Controller {
         $this->load->view('login_view');
     }
 
-    public function user_dashboard() {
-        $userData = json_decode($this->session->userdata('userData'), true);
-
-        echo "<pre>";
-        print_r($userData);
-        echo "</pre>";
+    public function user_dashboard($dataset) {
+        // $this->load->library('session');
+         //print_r($dataset).die();
+        $this->load->view('user_dashboard_view', ['userData' => $dataset['user']]);
+        // if ($this->session->has_userdata('userData')) {
+        //     $userData = json_decode($this->session->userdata('userData'), true);
+        //     echo "<pre>";
+        //     print_r($userData);
+        //     echo "</pre>";
     
-        $this->load->view('user_dashboard_view', ['userData' => $userData]);
+            
+        // } else {
+        //     echo "Session data not found.";
+        // }
     }
+    
 
     public function add_post() {
         $this->load->view('add_post_view');

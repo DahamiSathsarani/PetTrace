@@ -1,7 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+include_once (dirname(__FILE__) . "/Home.php");
 
-class User extends CI_Controller {
+class User extends Home {
+
+    public function __construct() {
+        parent::__construct();
+
+        // Load the session library
+        $this->load->library('session');
+    }
 
     public function createUser(){
         $fullName = $this->input->post('fullName');
@@ -79,20 +87,25 @@ class User extends CI_Controller {
                 $response = array(
                     'success' => false,
                     'message' => 'Passwords do not match',
+                    'user' => array()
                 );
             }
         } else {
             $response = array(
                 'success' => false,
                 'message' => 'User not found',
+                'user' => array()
             );
         }
     
         // Set the correct Content-Type header for JSON
         header('Content-Type: application/json');
+
+        $this->user_dashboard($response);
         
         // Output the JSON-encoded user portion of the response
-        echo json_encode($response);
+        //echo json_encode($response);
+        
     }
     
 
