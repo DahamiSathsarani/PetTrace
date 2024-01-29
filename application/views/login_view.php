@@ -15,11 +15,12 @@
     }
 
     img{
+      width: 100%;
       height: 100%;
     }
 
     .login_card{
-      width: 60%;
+      width: 50%;
       height: 100%;
       display: flex;
       align-items: center;
@@ -108,8 +109,8 @@
             <a>Forgot password</a>
             <h6>or log in with</h6>
             <div>
-                <button>Facebook</button>
-                <button>Google</button>
+                <!-- <button>Facebook</button> -->
+                <!-- <div id="firebaseui-auth-container"></div> -->
             </div>
             <h6>Don't have an account yet?</h6>
             <a>Signup</a>
@@ -119,6 +120,10 @@
     </div>
   </div>
 </div>
+
+<!-- <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/4.0.0/firebaseui.js"></script> -->
 
 <script type="text/javascript">
 
@@ -133,16 +138,22 @@
                 type: "POST",
                 cache:false,
                 data: {
-                    $email: email,
-                    $password: password,
+                    email: email,
+                    password: password,
                 },
-                contentType: false,
-                processData: false, 
                 success: function(response) {
-                    alert("Login successful");
+                  console.log(response.user);
+                  if (response.success) {
+                    alert(response.message);
+                    sessionStorage.setItem('userData', JSON.stringify(response.user));
                     window.location.href = "http://localhost/PetTrace/index.php/Home/user_dashboard";
+                  } else {
+                    alert(response.message);
+                  }
+            
                 },
                 error: function(request, status, error) {
+                  console.log(error)
                     alert("Login failed");
                 }
             });

@@ -56,31 +56,44 @@ class User extends CI_Controller {
     public function userLogin(){
         $email = $this->input->post('email');
         $password = $this->input->post('password');
-
-        echo "password  ", $password;
-
+    
         $this->load->model('User_model');
         $user = $this->User_model->fetch_user($email);
-
+    
         if ($user) {
             $user_id = $user->user_id;
             $role_id = $user->role_id;
-
+    
             $this->load->model('Mapping_model');
             $mapping = $this->Mapping_model->fetch_mapping($user_id,$role_id);
             $storedHashedPassword = $mapping->password;
-
-            echo "storedHashedPassword  ", $storedHashedPassword;
-
+    
             if (password_verify($password, $storedHashedPassword)) {
-                echo "Login successful";
+    
+                $response = array(
+                    'success' => true,
+                    'message' => 'Login successful',
+                    'user' => $user,
+                );
             } else {
-                echo "Passwords do not match, login failed";
+                $response = array(
+                    'success' => false,
+                    'message' => 'Passwords do not match',
+                );
             }
         } else {
-            echo "User not found";
+            $response = array(
+                'success' => false,
+                'message' => 'User not found',
+            );
         }
-
+    
+        // Set the correct Content-Type header for JSON
+        header('Content-Type: application/json');
+        
+        // Output the JSON-encoded user portion of the response
+        echo json_encode($response);
     }
+    
 
 }
