@@ -49,6 +49,10 @@ class Home extends CI_Controller {
         //     echo "Session data not found.";
         // }
     }
+
+    public function admin_dashboard() {
+        $this->load->view('admin_dashboard_view');
+    }
     
 
     public function add_post() {
