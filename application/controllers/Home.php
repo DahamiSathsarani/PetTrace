@@ -34,10 +34,10 @@ class Home extends CI_Controller {
         $this->load->view('login_view');
     }
 
-    public function user_dashboard($dataset) {
+    public function user_dashboard() {
         // $this->load->library('session');
          //print_r($dataset).die();
-        $this->load->view('user_dashboard_view', ['userData' => $dataset['user']]);
+        $this->load->view('user_dashboard_view');
         // if ($this->session->has_userdata('userData')) {
         //     $userData = json_decode($this->session->userdata('userData'), true);
         //     echo "<pre>";

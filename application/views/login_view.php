@@ -94,7 +94,7 @@ button {
             <div class="LoginHeader">
                 <h2 style="color: #6504b5; font-size: 40px;">Login</h2>
             </div>
-            <form action="http://localhost/PetTrace/index.php/User/userLogin" method="POST">
+            
                 <div class="LoginContent">
                     <div class='form Form'>
                         <div>
@@ -118,7 +118,7 @@ button {
                         </div>
                     </div>
                 </div>
-            </form>
+           
         </div>
     </div>
 </div>
@@ -127,7 +127,7 @@ button {
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
 <script src="https://cdn.firebase.com/libs/firebaseui/4.0.0/firebaseui.js"></script> -->
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 function postData(e) {
     e.preventDefault();
 
@@ -159,6 +159,6 @@ function postData(e) {
         }
     });
 }
-</script> -->
+</script>
 
 <?php $this->load->view('footer'); ?>

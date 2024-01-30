@@ -101,10 +101,10 @@ class User extends Home {
         // Set the correct Content-Type header for JSON
         header('Content-Type: application/json');
 
-        $this->user_dashboard($response);
+        //$this->user_dashboard($response);
         
         // Output the JSON-encoded user portion of the response
-        //echo json_encode($response);
+        echo json_encode($response);
         
     }
     

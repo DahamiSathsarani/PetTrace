@@ -81,6 +81,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript">
+    $(document).ready(function () {
+        let data = sessionStorage.getItem("userData");
+        console.log(data);
+    })
+    
     document.getElementById('addPostButton').addEventListener('click', function() {
         window.location.href = "http://localhost/PetTrace/index.php/Home/add_post";
     });
