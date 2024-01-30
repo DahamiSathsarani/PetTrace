@@ -44,7 +44,6 @@ class User_model extends CI_Model {
     }
 
     public function updateUserData($user_id){
-
         $query = $this->db->select('*')
         ->from('pettrace.users')
         ->where('user_id',$user_id)
@@ -52,6 +51,22 @@ class User_model extends CI_Model {
         ->result();
 
         return $query;
+    }
+
+    public function delete_user($user_id) {
+
+        $this->db->trans_begin();
+        $this->db->delete('pettrace.poster', array('user_id' => $user_id));
+        $this->db->delete('pettrace.users', array('user_id' => $user_id));
+        $this->db->delete('pettrace.user_roles_mapping', array('user_id' => $user_id));
+
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
+            return array("status" => FALSE, "msg" => $this->fe->error());
+        } else {
+            $this->db->trans_commit();
+            return array("status" => TRUE, "msg" => "User Delete successfully!");
+        }
     }
 
 }

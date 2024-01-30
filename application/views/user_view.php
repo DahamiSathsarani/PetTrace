@@ -48,7 +48,7 @@
                 </ul>
                 <div style="text-align:right; padding-bottom:10px; padding-right:10px;">
                 <a class="btn btn-primary" href="http://localhost/PetTrace/index.php/User/updateData/<?php echo $userData['user_id'] ?>">Edit Profile</a>
-                <a class="btn btn-danger" href="">Delete</a>
+                <a class="btn btn-danger" id="deleteButton" href="http://localhost/PetTrace/index.php/User/deleteUser/<?php echo $userData['user_id'] ?>">Delete</a>
                 </div>
             </div>
         </div>
@@ -90,5 +90,9 @@
         </p>
     </div>
 </footer>
+
+<script type="text/javascript">
+
+    </script>
 
 <?php $this->load->view('footer'); ?>

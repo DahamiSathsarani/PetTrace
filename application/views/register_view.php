@@ -155,7 +155,7 @@
             formData.append('userProPic', file);
 
             $.ajax({
-                url: "http://localhost/PetTrace/index.php/User/createUser",
+                url: "http://localhost/PetTrace/index.php/User/createUser/0",
                 type: "POST",
                 cache:false,
                 data: formData,

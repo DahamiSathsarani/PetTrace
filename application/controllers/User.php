@@ -133,6 +133,13 @@ class User extends Home {
 
         $this->load->view('update_user_view',$data);
     }
-    
 
+    public function deleteUser($id){
+        $this->load->model('User_model');
+        $userId = $id;
+        $result = $this->User_model->delete_user($userId);
+
+        $this->load->view('login_view');
+    }
+    
 }
