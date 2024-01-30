@@ -16,6 +16,14 @@
         border: solid 2px #6504b5;
     }
 
+    .card {
+        cursor: pointer;
+    }
+
+    .card:hover {
+        border: solid 2px #6504b5;
+    }
+
     .pet_image{
         width: 100%;
         height: 250px;;
@@ -95,7 +103,7 @@
     <div class="row">
         <?php foreach ($posts as $post): ?>
             <div class="col-md-4 mb-4">
-                <div class="card">
+                <div class="card post-card" onclick="redirectToPostView(<?= htmlspecialchars(json_encode($post), ENT_QUOTES, 'UTF-8'); ?>)">
                     <?php if (!empty($post['img_url'])): ?>
                         <img src="<?= base_url('uploads/' . $post['img_url']); ?>" class="card-img-top pet_image" alt="<?= $post['pet_name']; ?>">
                     <?php else: ?>
@@ -136,5 +144,12 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function redirectToPostView(post) {
+        var url = "http://localhost/PetTrace/index.php/Post/post_view?postData=" + encodeURIComponent(JSON.stringify(post));
+        window.location.href = url;
+    }
+</script>
 
 <?php $this->load->view('footer'); ?>

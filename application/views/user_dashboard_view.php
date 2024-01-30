@@ -127,7 +127,7 @@
     $(document).ready(function () {
     // Load posts dynamically using AJAX
     $.ajax({
-        url: "http://localhost/PetTrace/index.php/Post/getPosts",
+        url: "http://localhost/PetTrace/index.php/Post/getApprovedPosts",
         type: "GET",
         dataType: "json",
         success: function (data) {

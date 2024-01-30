@@ -19,7 +19,7 @@ class Home extends CI_Controller {
         $result = json_decode(json_encode($result),true);
         $data['categories'] = $result;
 
-        $post = $this->Post_model->get_posts();
+        $post = $this->Post_model->get_approved_posts();
         $post = json_decode(json_encode($post),true);
         $data['posts'] = $post;
 
