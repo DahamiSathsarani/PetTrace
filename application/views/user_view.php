@@ -31,7 +31,7 @@
         <!-- Image column -->
         <div class="col-md-6">
             <div class="card-image" style="margin-left: 10%;">
-                <img src="<?= base_url('uploads/' . $userData['img_url']); ?>" class="" alt="User Profile Image" width="80%" height="80%">
+                <img src="<?= base_url('uploads/'. $userData['img_url']); ?>" class="" alt="User Profile Image" width="80%" height="80%">
             </div>
             <br>
             <div class="card" style="width: 80%; padding-left:10px;">
