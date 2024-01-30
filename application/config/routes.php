@@ -55,5 +55,6 @@ $route['post'] = 'post';
 $route['userView'] = 'Post/userView';
 $route['signup'] = 'Home/signup';
 $route['signin'] = 'Home/signin';
+$route['profile'] = 'User/profile';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
