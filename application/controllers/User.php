@@ -11,6 +11,10 @@ class User extends Home {
         $this->load->library('session');
     }
 
+    public function Profile(){
+        $this->load->view('user_view');
+    }
+
     public function createUser(){
         $fullName = $this->input->post('fullName');
         $email = $this->input->post('email');
