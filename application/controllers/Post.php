@@ -30,7 +30,7 @@ class Post extends CI_Controller {
         $color = $this->input->post('color');
         $date = $this->input->post('date');
         $description = $this->input->post('description');
-        $createdDate = date('Y-m-d H:i:s');
+        $createdDate = date('Y-m-d');
 
         $this->load->model('Post_model');
 

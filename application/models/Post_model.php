@@ -10,7 +10,7 @@ class Post_model extends CI_Model {
     }
 
     public function create_post($data) {
-        $query = $this->db->query('SELECT MAX(post_id) AS last_post_id FROM poster');
+        $query = $this->db->query('SELECT MAX(poster_id) AS last_post_id FROM poster');
         $result = $query->row();
         $lastPostId = $result->last_post_id;
 
@@ -19,7 +19,7 @@ class Post_model extends CI_Model {
         $data['post_id'] = $newPostId;
 
         $this->db->insert('pettrace.poster',array(
-            'post_id' => $data['post_id'],
+            'poster_id' => $data['post_id'],
             'user_id' => $data['user_id'],
             'pet_name' => $data['pet_name'],
             'category_id' => $data['category_id'],
