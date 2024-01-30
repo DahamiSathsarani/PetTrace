@@ -107,27 +107,14 @@ input {
             <button type="submit" onclick = "postData(event)">Login</button>
           </div>
           <div class="loginFooter">
-            <h6>or log in with</h6>
-            <div>
-                <!-- <button>Facebook</button> -->
-                <!-- <div id="firebaseui-auth-container"></div> -->
-            </div>
             <h6>Don't have an account yet?</h6>
-            <a>Signup</a>
+            <a href="<?= base_url('index.php/signup');?>">Signup</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
-<script src="https://cdn.firebase.com/libs/firebaseui/4.0.0/firebaseui.js"></script> -->
-
-<!-- <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
-<script src="https://cdn.firebase.com/libs/firebaseui/4.0.0/firebaseui.js"></script> -->
 
 <script type="text/javascript">
 function postData(e) {
