@@ -16,6 +16,11 @@
         border: solid 2px #6504b5;
     }
 
+    .pet_image{
+        width: 100%;
+        height: 250px;;
+    }
+
     .footer{
         width: 100%;
         height: 400px;
@@ -74,7 +79,7 @@
 <div class="container mt-5">
     <div class="row">
         <?php foreach ($categories as $category): ?>
-            <div class="col">
+            <div class="col-md-3 mb-4">
                 <div class="card CategoryCard" href="http://localhost/PetTrace/index.php/Post/getCategorizedPost/<?= $category['category_id']; ?>">
                     <div class="card-body CategoryCardBody d-flex align-items-center justify-content-center">
                         <h5 class="card-title"><?= $category['category_name']; ?></h5>
@@ -85,16 +90,21 @@
     </div>
 </div>
 
+<!-- Posts section -->
 <div class="container mt-5">
     <div class="row">
         <?php foreach ($posts as $post): ?>
             <div class="col-md-4 mb-4">
                 <div class="card">
+                    <?php if (!empty($post['img_url'])): ?>
+                        <img src="<?= base_url('uploads/' . $post['img_url']); ?>" class="card-img-top pet_image" alt="<?= $post['pet_name']; ?>">
+                    <?php else: ?>
+                        <img src="<?= base_url('path_to_default_image/default.jpg'); ?>" class="card-img-top" alt="Default Image">
+                    <?php endif; ?>
                     <div class="card-body">
                         <h5 class="card-title"><?= $post['pet_name']; ?></h5>
                         <p class="card-text"><?= $post['color']; ?></p>
                         <p class="card-text"><?= $post['breed']; ?></p>
-                        <!-- Add more fields as needed -->
                     </div>
                 </div>
             </div>
