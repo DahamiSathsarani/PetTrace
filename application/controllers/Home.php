@@ -52,6 +52,7 @@ class Home extends CI_Controller {
     
 
     public function add_post() {
-        $this->load->view('add_post_view');
+        $data['user_id'] = $this->input->get('user_id');
+        $this->load->view('add_post_view', $data);
     }
 }
