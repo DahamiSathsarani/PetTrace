@@ -75,7 +75,7 @@
                     <li><strong>Breed:</strong> <?= $postData['pet_name']; ?> </li><br>
                     <li><strong>Color:</strong> <?= $postData['breed']; ?></li><br>
                     <li><strong>Description:</strong> <?= $postData['description']; ?></li><br>
-                    <li><strong>Category:</strong> <?= $postData['category_id']; ?></li><br>
+                    <li><strong>Category:</strong> <?= $category_name; ?></li><br>
                     <li><strong>Lost Date:</strong> <?= $postData['lost_date']; ?></li><br>
                 </ul>
                 <a class="btn btn-primary" href="<?= base_url('index.php/user_view');?>">Contact</a>

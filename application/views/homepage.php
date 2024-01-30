@@ -8,6 +8,8 @@
     }
 
     .CategoryCard{
+        text-decoration: none;
+        cursor: pointer;
         box-shadow: 0 0 10px gray;
         transition: 0.1s;
     }
@@ -88,11 +90,11 @@
     <div class="row">
         <?php foreach ($categories as $category): ?>
             <div class="col-md-3 mb-4">
-                <div class="card CategoryCard" href="http://localhost/PetTrace/index.php/Post/getCategorizedPost/<?= $category['category_id']; ?>">
+                <a href="http://localhost/PetTrace/index.php/Post/categorized_post/<?= $category['category_id']; ?>" class="card CategoryCard">
                     <div class="card-body CategoryCardBody d-flex align-items-center justify-content-center">
                         <h5 class="card-title"><?= $category['category_name']; ?></h5>
                     </div>
-                </div>
+                </a>
             </div>
         <?php endforeach; ?>
     </div>

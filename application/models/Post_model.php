@@ -66,6 +66,7 @@ class Post_model extends CI_Model {
         $dataset = $this->db->select('*')
             ->from('pettrace.poster')
             ->where('category_id', $category_id)
+            ->where('status', 'APPROVED')
             ->get()
             ->result();
     
