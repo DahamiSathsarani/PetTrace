@@ -30,7 +30,7 @@
         <!-- Image column -->
         <div class="col-md-6">
             <div class="card-image">
-                <img src="<?php echo base_url('assets/images/dog-2.jpg'); ?>" class="img-fluid" alt="Pet Image" width="500" height="200">
+                <img src="<?= base_url('uploads/' .$postData['img_url']); ?>" class="img-fluid" alt="Pet Image" width="500" height="200">
             </div>
         </div>
 
@@ -38,11 +38,13 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                <h2 class="mt-3">Pet Name</h2>
+                <h2 class="mt-3">Pet Details</h2>
                 <ul>
-                    <li><strong>Breed:</strong> Labrador Retriever</li><br>
-                    <li><strong>Color:</strong> Brown</li><br>
-                    <li><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et urna eu lacus hendrerit fermentum.</li>
+                    <li><strong>Breed:</strong> <?= $postData['pet_name']; ?> </li><br>
+                    <li><strong>Color:</strong> <?= $postData['breed']; ?></li><br>
+                    <li><strong>Description:</strong> <?= $postData['description']; ?></li><br>
+                    <li><strong>Category:</strong> <?= $postData['category_id']; ?></li><br>
+                    <li><strong>Lost Date:</strong> <?= $postData['lost_date']; ?></li><br>
                 </ul>
                 <a class="btn btn-primary" href="<?= base_url('index.php/userView');?>">Contact</a>
 

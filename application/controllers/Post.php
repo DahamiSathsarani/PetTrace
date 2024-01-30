@@ -8,18 +8,20 @@ class Post extends CI_Controller {
         $this->load->library('session');
     }
 
+    public function post_view() {
+        $postDataParam = $this->input->get('postData');
+        $postData = json_decode(urldecode($postDataParam), true);
+        $data['postData'] = $postData;
+        $this->load->view('post_view', $data);
+    }
+
     public function getPosts() {
 
-        $this->load->view('post_view');
-
         $this->load->model('Post_model');
-        $data['posts'] = $this->Post_model->get_posts();
 
-		$$post = $this->Post_model->get_posts();
-        $post = json_decode(json_encode($post),true);
-        $data['posts'] = $post;
+        $post = $this->Post_model->get_posts();
+        echo json_encode($post);
 
-        $this->load->view('homepage', $data);
     }
 
     public function createPost() {

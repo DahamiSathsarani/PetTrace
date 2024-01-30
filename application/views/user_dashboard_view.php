@@ -23,6 +23,19 @@
         background-color: #6504b5;
     }
 
+    .pet_image{
+        width: 100%;
+        height: 200px;;
+    }
+
+    .card {
+        cursor: pointer;
+    }
+
+    .card:hover {
+        border: solid 2px #6504b5;
+    }
+
     .footer{
         width: 100%;
         height: 400px;
@@ -34,7 +47,7 @@
     i{
         color: #fff;
         font-size: 30px;
-    }0
+    }
 
 </style>
 
@@ -57,26 +70,12 @@
 <button class="addPostButton" id="addPostButton" type="submit">Add Poster</button>
 
 <!-- Posts section -->
-<!-- <div class="container mt-5">
-    <div class="row">
-        <?php foreach ($posts as $post): ?>
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <?php if (!empty($post['img_url'])): ?>
-                        <img src="<?= base_url('uploads/' . $post['img_url']); ?>" class="card-img-top" alt="<?= $post['pet_name']; ?>">
-                    <?php else: ?>
-                        <img src="<?= base_url('path_to_default_image/default.jpg'); ?>" class="card-img-top" alt="Default Image">
-                    <?php endif; ?>
-                    <div class="card-body">
-                        <h5 class="card-title"><?= $post['pet_name']; ?></h5>
-                        <p class="card-text"><?= $post['color']; ?></p>
-                        <p class="card-text"><?= $post['breed']; ?></p>
-                    </div>
-                </div>
-            </div>
-        <?php endforeach; ?>
+<div class="container mt-5">
+    <div class="row" id="postsContainer">
+        <!-- Posts will be dynamically added here -->
     </div>
-</div> -->
+</div>
+
 
 <div class="footer mt-5">
     <div class="row" style="">
@@ -101,6 +100,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -123,6 +123,47 @@
         console.log(user_id);
         window.location.href = "http://localhost/PetTrace/index.php/Home/add_post?user_id=" + user_id;
     });
+
+    $(document).ready(function () {
+    // Load posts dynamically using AJAX
+    $.ajax({
+        url: "http://localhost/PetTrace/index.php/Post/getPosts",
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            var postsContainer = $('#postsContainer');
+
+            if (data.length > 0) {
+                $.each(data, function (index, post) {
+                    var imageUrl = "http://localhost/PetTrace/uploads/" + post.img_url;
+
+                    var card = $('<div class="col-md-3 mb-4">').append(
+                        $('<div class="card">').append(
+                            $('<img src="' + imageUrl + '" class="card-img-top pet_image" alt="' + post.pet_name + '">'),
+                            $('<div class="card-body">').append(
+                                $('<h5 class="card-title">').text(post.pet_name),
+                                $('<p class="card-text">').text(post.color),
+                                $('<p class="card-text">').text(post.breed),
+                            )
+                        )
+                    );
+                    card.click(function () {
+                        window.location.href = "http://localhost/PetTrace/index.php/Post/post_view?postData=" + encodeURIComponent(JSON.stringify(post));
+                    });
+
+                    postsContainer.append(card);
+                });
+            } else {
+                postsContainer.append($('<p>').text('No posts available.'));
+            }
+        },
+        error: function () {
+            console.error('Error fetching posts.');
+        }
+    });
+});
+
+
 </script>
 
 <?php $this->load->view('footer'); ?>
