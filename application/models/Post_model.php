@@ -61,4 +61,14 @@ class Post_model extends CI_Model {
     
         return $dataset;
     }
+
+    public function getPostsByCategory($category_id) {
+        $dataset = $this->db->select('*')
+            ->from('pettrace.poster')
+            ->where('category_id', $category_id)
+            ->get()
+            ->result();
+    
+        return $dataset;
+    }
 }

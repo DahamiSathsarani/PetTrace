@@ -56,5 +56,6 @@ $route['userView'] = 'Post/userView';
 $route['signup'] = 'Home/signup';
 $route['signin'] = 'Home/signin';
 $route['profile'] = 'User/profile';
+$routes['Post/categorized_post/(:num)'] = 'Post/categorized_post/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
