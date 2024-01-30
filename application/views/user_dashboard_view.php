@@ -48,13 +48,35 @@
 			</button>
 		</div>
 		<div style="width: 20%;">
-			<a id="userName" class="navbar-brand m-3" href="<?= base_url('index.php/signup');?>"></a>
+			<a id="userName" class="navbar-brand m-3" href="<?= base_url('index.php/profile');?>"></a>
 			<a class="navbar-brand m-3" href="<?= base_url('index.php/signout');?>">Sign Out</a>
 		</div>
     </div>
 </nav>
 
 <button class="addPostButton" id="addPostButton" type="submit">Add Poster</button>
+
+<!-- Posts section -->
+<!-- <div class="container mt-5">
+    <div class="row">
+        <?php foreach ($posts as $post): ?>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <?php if (!empty($post['img_url'])): ?>
+                        <img src="<?= base_url('uploads/' . $post['img_url']); ?>" class="card-img-top" alt="<?= $post['pet_name']; ?>">
+                    <?php else: ?>
+                        <img src="<?= base_url('path_to_default_image/default.jpg'); ?>" class="card-img-top" alt="Default Image">
+                    <?php endif; ?>
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $post['pet_name']; ?></h5>
+                        <p class="card-text"><?= $post['color']; ?></p>
+                        <p class="card-text"><?= $post['breed']; ?></p>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div> -->
 
 <div class="footer mt-5">
     <div class="row" style="">
