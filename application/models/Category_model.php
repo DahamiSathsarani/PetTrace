@@ -8,4 +8,16 @@ class Category_model extends CI_Model {
 
         return $dataset;
     }
+
+    public function getCategoryName($category_id) {
+        $this->db->where('category_id', $category_id);
+        $query = $this->db->get('category');
+
+        if ($query->num_rows() > 0) {
+            $category = $query->row_array();
+            return $category['category_name'];
+        } else {
+            return '';
+        }
+    }
 }
