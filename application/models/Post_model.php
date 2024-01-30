@@ -33,4 +33,14 @@ class Post_model extends CI_Model {
         ));
 
     }
+
+    public function get_posts_by_user_id($user_id) {
+        $dataset = $this->db->select('*')
+            ->from('pettrace.poster')
+            ->where('user_id', $user_id)
+            ->get()
+            ->result();
+    
+        return $dataset;
+    }
 }

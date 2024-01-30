@@ -15,6 +15,13 @@ class User extends Home {
         $userDataParam = $this->input->get('userData');
         $userData = json_decode(urldecode($userDataParam), true);
         $data['userData'] = $userData;
+
+        $user_id = isset($userData['user_id']) ? $userData['user_id'] : null;
+
+        $this->load->model('Post_model');
+        $result = $this->Post_model->get_posts_by_user_id($user_id);
+        $data['userPosts'] = $this->Post_model->get_posts_by_user_id($user_id);
+
         $this->load->view('user_view', $data);
     }
 
