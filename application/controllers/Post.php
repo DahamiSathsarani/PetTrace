@@ -11,7 +11,13 @@ class Post extends CI_Controller {
     public function post_view() {
         $postDataParam = $this->input->get('postData');
         $postData = json_decode(urldecode($postDataParam), true);
+
+        $this->load->model('Category_model');
+        $category_name = $this->Category_model->getCategoryName($postData['category_id']);
+
         $data['postData'] = $postData;
+        $data['category_name'] = $category_name;
+        
         $this->load->view('post_view', $data);
     }
 
@@ -90,5 +96,18 @@ class Post extends CI_Controller {
             echo "Please select a picture";
         }
         
+    }
+
+    public function categorized_post($category_id) {
+        $this->load->model('Post_model');
+        $this->load->model('Category_model');
+
+        $posts = $this->Post_model->getPostsByCategory($category_id);
+        $category_name = $this->Category_model->getCategoryName($category_id);
+        
+        $data['posts'] = $posts;
+        $data['category_name'] = $category_name;
+
+        $this->load->view('categorized_posts_view', $data);
     }
 }
