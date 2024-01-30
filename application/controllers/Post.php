@@ -13,7 +13,7 @@ class Post extends CI_Controller {
         $postData = json_decode(urldecode($postDataParam), true);
 
         $this->load->model('Category_model');
-        $category_name = $this->Category_model->getCategoryName($postData['category_id']);
+        $category_name = $this->Category_model->get_categories($postData['category_id']);
 
         $data['postData'] = $postData;
         $data['category_name'] = $category_name;

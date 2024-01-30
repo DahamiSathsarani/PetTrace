@@ -38,10 +38,10 @@
 
     .footer{
         width: 100%;
-        height: 400px;
         background-color: #6504b5;
         display: flex;
         justify-content: center;
+        padding: 20px 0;
     }
 
     i{
@@ -76,6 +76,33 @@
         <!-- Posts will be dynamically added here -->
     </div>
 </div>
+
+<div class="footer mt-5 text-light py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="mb-4">PetTrace</h2>
+                <h5>Contact Us</h5>
+                <p>Email: info@pettrace.com</p>
+                <p>Phone: +123 456 789</p>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end">
+                <div class="social-icons">
+                    <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-light me-3"><i class="bi bi-youtube"></i></a>
+                    <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <p class="mt-4 text-center">&copy; 2024 PetTrace. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
