@@ -27,18 +27,23 @@
 <!-- body -->
 <div class="container mt-5">
     <div class="row">
+    <?php ($userData) ?>
         <!-- Image column -->
         <div class="col-md-6">
-            <div class="card-image" style="margin-left: 10%">
-                <img src="<?php echo base_url('assets/images/dog-2.jpg'); ?>" class="" alt="User Profile Image" width="50%" height="50%">
+            <div class="card-image" style="margin-left: 10%;">
+                <img src="<?= base_url('uploads/'. $userData['img_url']); ?>" class="" alt="User Profile Image" width="80%" height="80%">
             </div>
             <br>
-            <div class="card" style="width: 80%">
-                <h3>Name</h3>
-                <ul>
-                    <li><strong>Adress</strong></li>
-                    <li><strong>Contact</strong></li>
+            <div class="card" style="width: 80%; padding-left:10px;">
+                <h3><p>Hello, <?= $userData['full_name']; ?> !</p></h3>
+                <ul style="font-size: 20px;">
+                    <li><strong>Email : </strong><?= $userData['email']; ?></li>
+                    <li><strong>Mobile : </strong><?= $userData['mobile']; ?></li>
                 </ul>
+                <div style="text-align:right; padding-bottom:10px; padding-right:10px;">
+                <a class="btn btn-primary" href="<?= base_url('index.php/userView');?>">Edit Profile</a>
+                <a class="btn btn-danger" href="<?= base_url('index.php/userView');?>">Delete</a>
+                </div>
             </div>
         </div>
 
@@ -50,13 +55,6 @@
         </div>
     </div>
 </div>
-
-<?php if ($userData): ?>
-        <p>Welcome, <?= $userData['full_name']; ?>!</p>
-        
-    <?php else: ?>
-        <p>User data not available.</p>
-    <?php endif; ?>
 
 <!-- Footer -->
 <footer class="navbar navbar-expand-lg navbar-dark mt-auto" style="background-color: #6504b5; color: white;">
