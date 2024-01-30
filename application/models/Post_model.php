@@ -1,12 +1,30 @@
 <?php
 class Post_model extends CI_Model {
-    public function get_posts() {
+    public function get_approved_posts() {
         $dataset = $this->db->select('*')
         ->from('pettrace.poster')
+        ->where('status', 'APPROVED')
         ->get()
         ->result();
 
         return $dataset;
+    }
+
+    public function get_not_approved_posts() {
+        $dataset = $this->db->select('*')
+        ->from('pettrace.poster')
+        ->where('status', 'NOT APPROVED')
+        ->get()
+        ->result();
+
+        return $dataset;
+    }
+
+    public function approvePost($postId) {
+        $this->db->where('poster_id', $postId);
+        $this->db->update('poster', array('status' => 'APPROVED'));
+    
+        return $this->db->affected_rows() > 0;
     }
 
     public function create_post($data) {

@@ -62,41 +62,19 @@
 		</div>
 		<div style="width: 20%;">
 			<a id="userName" class="navbar-brand m-3" href="#"></a>
-			<a class="navbar-brand m-3" href="<?= base_url('index.php/signout');?>">Sign Out</a>
+			<a class="navbar-brand m-3" href="<?= base_url('index.php/signin');?>">Sign Out</a>
 		</div>
     </div>
 </nav>
 
 <button class="addPostButton" id="addPostButton" type="submit">Add Admin</button>
+<button class="addPostButton" id="addPostButton" type="submit">Users</button>
 
 <!-- Posts section -->
 <div class="container mt-5">
     <div class="row" id="postsContainer">
         <!-- Posts will be dynamically added here -->
     </div>
-</div>
-
-
-<div class="footer mt-5">
-    <div class="row" style="">
-        <div class="col-md-6 text-light" style="width: 600px">
-            <h2 class="mt-5">PetTrace</h2>
-            <h5 class="mt-5">Contact Us</h5>
-            <p>Email: info@pettrace.com</p>
-            <p>Phone: +123 456 789</p>
-        </div>
-        <div class="col-md-6" style="width: 600px">
-            <a href="#" class=""><i class="bi bi-facebook"></i></a>
-            <a href="#" class=""><i class="bi bi-youtube"></i></a>
-            <a href="#" class=""><i class="bi bi-instagram"></i></a>
-        </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-md-6 text-light" style="width: 600px">
-            <p>&copy; 2024 PetTrace. All rights reserved.</p>
-        </div>
-    </div>
-    
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -127,7 +105,7 @@
     $(document).ready(function () {
     // Load posts dynamically using AJAX
     $.ajax({
-        url: "http://localhost/PetTrace/index.php/Post/getPosts",
+        url: "http://localhost/PetTrace/index.php/Post/getNotApprovedPosts",
         type: "GET",
         dataType: "json",
         success: function (data) {
@@ -144,13 +122,15 @@
                                 $('<h5 class="card-title">').text(post.pet_name),
                                 $('<p class="card-text">').text(post.color),
                                 $('<p class="card-text">').text(post.breed),
+                                $('<p class="card-text">').text(post.description),
+                                $('<button class="btn btn-primary btn-approve">Approve</button>')
                             )
                         )
                     );
-                    card.click(function () {
-                        window.location.href = "http://localhost/PetTrace/index.php/Post/post_view?postData=" + encodeURIComponent(JSON.stringify(post));
-                    });
 
+                    card.find('.btn-approve').click(function () {
+                        approvePost(post.poster_id, this);
+                    });
                     postsContainer.append(card);
                 });
             } else {
@@ -162,6 +142,27 @@
         }
     });
 });
+
+function approvePost(postId, approveButton) {
+    $.ajax({
+        url: "http://localhost/PetTrace/index.php/Post/approvePost",
+        type: "POST",
+        dataType: "json",
+        data: { post_id: postId },
+        success: function (response) {
+            if (response.success) {
+                alert("Post approved successfully!");
+                $(approveButton).text("Approved").prop('disabled', true);
+            } else {
+                alert("Failed to approve post. Please try again.");
+            }
+        },
+        error: function () {
+            console.error('Error approving post.');
+        }
+    });
+}
+
 
 
 </script>

@@ -15,13 +15,29 @@ class Post extends CI_Controller {
         $this->load->view('post_view', $data);
     }
 
-    public function getPosts() {
+    public function getApprovedPosts() {
 
         $this->load->model('Post_model');
 
-        $post = $this->Post_model->get_posts();
+        $post = $this->Post_model->get_approved_posts();
         echo json_encode($post);
+    }
 
+    public function getNotApprovedPosts() {
+
+        $this->load->model('Post_model');
+
+        $post = $this->Post_model->get_not_approved_posts();
+        echo json_encode($post);
+    }
+
+    public function approvePost() {
+        $postId = $this->input->post('post_id');
+
+        $this->load->model('Post_model');
+        $success = $this->Post_model->approvePost($postId);
+
+        echo json_encode(array('success' => $success));
     }
 
     public function createPost() {
