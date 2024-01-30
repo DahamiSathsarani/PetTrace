@@ -13,6 +13,14 @@
         flex: 1;
     }
 
+    .card {
+        cursor: pointer;
+    }
+
+    .card:hover {
+        border: solid 2px #6504b5;
+    }
+
     .userImg{
         width: 300px;
         height: 300px;
