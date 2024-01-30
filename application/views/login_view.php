@@ -148,9 +148,13 @@ function postData(e) {
             console.log(response.user);
             if (response.success) {
                 const userData = JSON.stringify(response.user);
-                console.log(userData);
                 sessionStorage.setItem('userData', userData);
-                window.location.href = "http://localhost/PetTrace/index.php/Home/user_dashboard";
+                if (response.user.role_id === '1') {
+                  window.location.href = 'http://localhost/PetTrace/index.php/Home/admin_dashboard';
+                } else {
+                  window.location.href = "http://localhost/PetTrace/index.php/Home/user_dashboard";
+                }
+
             } else {
                 alert(response.message);
             }
