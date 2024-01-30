@@ -12,7 +12,10 @@ class User extends Home {
     }
 
     public function Profile(){
-        $this->load->view('user_view');
+        $userDataParam = $this->input->get('userData');
+        $userData = json_decode(urldecode($userDataParam), true);
+        $data['userData'] = $userData;
+        $this->load->view('user_view', $data);
     }
 
     public function createUser(){
