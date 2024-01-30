@@ -14,18 +14,18 @@
     height: 100%;
 }
 
-img {
-    width: 100%;
-    height: 100%;
-}
+    img{
+      width: 100%;
+      height: 100%;
+    }
 
-.login_card {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    .login_card{
+      width: 50%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
 .loginForm {
     width: 50%;
@@ -70,14 +70,14 @@ input {
     justify-content: center;
 }
 
-button {
-    width: 30%;
-    height: 40px;
-    background-color: #6504b5;
-    color: #FFF;
-    border: none;
-    border-radius: 5px;
-}
+    button{
+      width: 100%;
+      height: 40px;
+      background-color: #6504b5;
+      color: #FFF;
+      border: none;
+      border-radius: 5px;
+    }
 
 .loginFooter {
     width: 100%;
@@ -86,42 +86,44 @@ button {
 </style>
 
 <div class="background">
-    <div class="image">
-        <img src="../assets/images/login.jpg" class="d-block w-100" alt="Pet Image 1" id="image">
-    </div>
-    <div class="login_card">
-        <div class="loginForm">
-            <div class="LoginHeader">
-                <h2 style="color: #6504b5; font-size: 40px;">Login</h2>
+  <div class="image">
+    <img src="../assets/images/login.jpg" class="d-block w-100" alt="Pet Image 1" id="image">
+  </div>
+  <div class="login_card">
+    <div class="loginForm">
+      <div class="LoginHeader">
+        <h2 style="color: #6504b5; font-size: 40px;">Login</h2>
+      </div>
+      <div class="LoginContent">
+        <div class='form Form'>
+          <div>
+            <input type="text" id="email" name="email" placeholder="Email"/>
+          </div>
+          <div>
+            <input type="text" id="password" name="password" placeholder="Password"/>
+          </div>
+          <a>Forgot password</a>
+          <div class='LoginButton'>
+            <button type="submit" onclick = "postData(event)">Login</button>
+          </div>
+          <div class="loginFooter">
+            <h6>or log in with</h6>
+            <div>
+                <!-- <button>Facebook</button> -->
+                <!-- <div id="firebaseui-auth-container"></div> -->
             </div>
-            
-                <div class="LoginContent">
-                    <div class='form Form'>
-                        <div>
-                            <input type="text" id="email" name="email" placeholder="Email" />
-                        </div>
-                        <div>
-                            <input type="text" id="password" name="password" placeholder="Password" />
-                        </div>
-                        <div class='LoginButton'>
-                            <button type="submit" onclick="postData(event)">Login</button>
-                        </div>
-                        <div class="loginFooter">
-                            <a>Forgot password</a>
-                            <h6>or log in with</h6>
-                            <div>
-                                <!-- <button>Facebook</button> -->
-                                <!-- <div id="firebaseui-auth-container"></div> -->
-                            </div>
-                            <h6>Don't have an account yet?</h6>
-                            <a>Signup</a>
-                        </div>
-                    </div>
-                </div>
-           
+            <h6>Don't have an account yet?</h6>
+            <a>Signup</a>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
+
+<!-- <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/4.0.0/firebaseui.js"></script> -->
 
 <!-- <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
