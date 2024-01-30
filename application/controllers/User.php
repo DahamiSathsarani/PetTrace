@@ -15,10 +15,17 @@ class User extends Home {
         $userDataParam = $this->input->get('userData');
         $userData = json_decode(urldecode($userDataParam), true);
         $data['userData'] = $userData;
+
+        $user_id = isset($userData['user_id']) ? $userData['user_id'] : null;
+
+        $this->load->model('Post_model');
+        $result = $this->Post_model->get_posts_by_user_id($user_id);
+        $data['userPosts'] = $this->Post_model->get_posts_by_user_id($user_id);
+
         $this->load->view('user_view', $data);
     }
 
-    public function createUser(){
+    public function createUser($index){
         $fullName = $this->input->post('fullName');
         $email = $this->input->post('email');
         $phone = $this->input->post('phone');
@@ -50,6 +57,7 @@ class User extends Home {
                 'role_id' => 2,
                 'img_url' => $userProPic,
                 'password' => $hashedPassword,
+                'index' => $index,
             );
 
             $result = $this->User_model->create_user($user);
@@ -114,6 +122,24 @@ class User extends Home {
         echo json_encode($response);
         
     }
-    
 
+    public function updateData($id){
+        $this->load->model('User_model');
+        $userId = $id;
+        $result = $this->User_model->updateUserData($userId);
+
+        $result = json_decode(json_encode($result),true);
+        $data['userData'] = $result;
+
+        $this->load->view('update_user_view',$data);
+    }
+
+    public function deleteUser($id){
+        $this->load->model('User_model');
+        $userId = $id;
+        $result = $this->User_model->delete_user($userId);
+
+        $this->load->view('login_view');
+    }
+    
 }

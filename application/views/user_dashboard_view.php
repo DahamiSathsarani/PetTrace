@@ -62,7 +62,7 @@
 		</div>
 		<div style="width: 20%;">
 			<a id="userName" class="navbar-brand m-3" href="#"></a>
-			<a class="navbar-brand m-3" href="<?= base_url('index.php/signout');?>">Sign Out</a>
+			<a class="navbar-brand m-3" href="<?= base_url('index.php/signin');?>">Sign Out</a>
 		</div>
     </div>
 </nav>

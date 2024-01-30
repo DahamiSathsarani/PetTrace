@@ -79,8 +79,9 @@
 </style>
 
 <div class="background">
+<?php foreach ($userData as $i => $row): ?>
   <div class="image">
-    <img src="../assets/images/register.jpg" class="d-block w-100" alt="Pet Image 1" id="image">
+  <!-- <img src="<?= base_url('uploads/'. $userData['img_url']); ?>" class="userImg" alt="User Profile Image"> -->
   </div>
   <div class="register_card">
     <div class="registerForm">
@@ -91,15 +92,15 @@
         <div class='form'>
           <div>
             <label htmlFor="name">Full Name :</label><br>
-            <input type="text" id="name" name="name"/>
+            <input type="text" id="name" name="name" value="<?php echo $row['full_name'];?>"/>
           </div>
           <div>
             <label htmlFor="email">Email :</label><br>
-            <input type="text" id="email" name="email"/>
+            <input type="text" id="email" name="email" value="<?php echo $row['email'];?>"/>
           </div>
           <div>
             <label htmlFor="phone">Phone Number :</label><br>
-            <input type="number" id="phone" name="phone"/>
+            <input type="number" id="phone" name="phone" value="<?php echo $row['mobile'];?>"/>
           </div>
           <div>
             <label htmlFor="userProPic">Upload Profile Picture :</label>
@@ -114,9 +115,10 @@
             <input type="text" id="confirmPassword" name="confirmPassword"/>
           </div>
           <div class='RegisterButton'>
-            <button type="submit" onclick = "postData(event)">Submit</button>
+            <button type="submit" onclick = "postData(event)">Update</button>
           </div>
         </div>
+        <?php endforeach;?>
       </div>
     </div>
   </div>
@@ -134,8 +136,6 @@
             var phone = document.getElementById('phone').value;
             var password = document.getElementById('password').value;
             var confirmPassword = document.getElementById('confirmPassword').value;
-
-            console.log('Full Name:', fullName);
 
             // Handle file upload
             var input = document.getElementById('userProPic');
@@ -155,7 +155,7 @@
             formData.append('userProPic', file);
 
             $.ajax({
-                url: "http://localhost/PetTrace/index.php/User/createUser/0",
+                url: "http://localhost/PetTrace/index.php/User/createUser/1",
                 type: "POST",
                 cache:false,
                 data: formData,
@@ -163,7 +163,7 @@
                 processData: false, 
                 success: function(response) {
                     alert("Registration successful");
-                    window.location.href = "http://localhost/PetTrace/index.php/Home/signin";
+                    window.location.href = "http://localhost/PetTrace/index.php/User/profile";
                 },
                 error: function(request, status, error) {
                     alert("Registration failed");
