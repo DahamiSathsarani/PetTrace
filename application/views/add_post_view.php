@@ -94,7 +94,7 @@
           </div>
           <div>
             <label for="category">Select Category:</label>
-            <select id="categoryDropdown" name="category"></select>
+            <select id="category" name="category"></select>
           </div>
           <div>
             <label htmlFor="breed">Breed :</label><br>
@@ -113,9 +113,11 @@
             <input type="text" id="description" name="description"/>
           </div>
           <div>
-            <label htmlFor="userProPic">Upload Profile Picture :</label>
-            <input type="file" id="userProPic" name="userProPic"/>
+            <label htmlFor="petPic">Upload Picture :</label>
+            <input type="file" id="petPic" name="petPic"/>
           </div>
+          <!-- Add a hidden input for user_id -->
+          <input type="hidden" name="user_id" value="<?= $user_id; ?>">
           <div class='RegisterButton'>
             <button type="submit" onclick = "postData(event)">Add</button>
           </div>
@@ -132,44 +134,47 @@
         function postData(e){
           e.preventDefault();
 
-            var fullName = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var phone = document.getElementById('phone').value;
-            var password = document.getElementById('password').value;
-            var confirmPassword = document.getElementById('confirmPassword').value;
-
-            console.log('Full Name:', fullName);
+            var petName = document.getElementById('name').value;
+            var category = document.getElementById('category').value;
+            var breed = document.getElementById('breed').value;
+            var color = document.getElementById('color').value;
+            var date = document.getElementById('date').value;
+            var description = document.getElementById('description').value;
+            var user_id = document.getElementsByName('user_id')[0].value;
 
             // Handle file upload
-            var input = document.getElementById('userProPic');
+            var input = document.getElementById('petPic');
             var file = input.files[0];
 
             if (!file) {
-                alert("Please select a profile picture");
+                alert("Please select a pet picture");
                 return;
             }
 
             var formData = new FormData();
-            formData.append('fullName', fullName);
-            formData.append('email', email);
-            formData.append('phone', phone);
-            formData.append('password', password);
-            formData.append('confirmPassword', confirmPassword);
-            formData.append('userProPic', file);
+            formData.append('petName', petName);
+            formData.append('category', category);
+            formData.append('breed', breed);
+            formData.append('color', color);
+            formData.append('date', date);
+            formData.append('description', description);
+            formData.append('petPic', file);
+            formData.append('user_id', user_id);
 
             $.ajax({
-                url: "http://localhost/PetTrace/index.php/User/createUser",
+                url: "http://localhost/PetTrace/index.php/Post/createPost",
                 type: "POST",
                 cache:false,
                 data: formData,
                 contentType: false,
                 processData: false, 
                 success: function(response) {
-                    alert("Registration successful");
-                    window.location.href = "http://localhost/PetTrace/index.php/Home/signin";
+                    alert("Added successful");
+                    window.location.href = "http://localhost/PetTrace/index.php/Home/user_dashboard";
                 },
                 error: function(request, status, error) {
-                    alert("Registration failed");
+                  console.log(error);
+                    alert("Adding failed");
                 }
             });
         }
@@ -181,7 +186,7 @@
             type: "GET",
             dataType: "json",
             success: function(data) {
-                var dropdown = $('#categoryDropdown');
+                var dropdown = $('#category');
                 dropdown.empty();
                 $.each(data, function(index, category) {
                     dropdown.append($('<option>').text(category.category_name).attr('value', category.category_id));
