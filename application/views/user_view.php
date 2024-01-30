@@ -51,6 +51,13 @@
     </div>
 </div>
 
+<?php if ($userData): ?>
+        <p>Welcome, <?= $userData['full_name']; ?>!</p>
+        
+    <?php else: ?>
+        <p>User data not available.</p>
+    <?php endif; ?>
+
 <!-- Footer -->
 <footer class="navbar navbar-expand-lg navbar-dark mt-auto" style="background-color: #6504b5; color: white;">
     <div class="container">

@@ -48,7 +48,7 @@
 			</button>
 		</div>
 		<div style="width: 20%;">
-			<a id="userName" class="navbar-brand m-3" href="<?= base_url('index.php/profile');?>"></a>
+			<a id="userName" class="navbar-brand m-3" href="#"></a>
 			<a class="navbar-brand m-3" href="<?= base_url('index.php/signout');?>">Sign Out</a>
 		</div>
     </div>
@@ -112,6 +112,11 @@
         var userName = $('#userName');
         userName.append(firstName);
     })
+
+    document.getElementById('userName').addEventListener('click', function() {
+        var userData = sessionStorage.getItem("userData");
+        window.location.href = "http://localhost/PetTrace/index.php/profile?userData=" + encodeURIComponent(userData);
+    });
     
     document.getElementById('addPostButton').addEventListener('click', function() {
         var user_id = sessionStorage.getItem("userData") ? JSON.parse(sessionStorage.getItem("userData")).user_id : '';
