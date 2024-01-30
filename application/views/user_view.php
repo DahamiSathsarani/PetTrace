@@ -47,8 +47,8 @@
                     <li><strong>Mobile : </strong><?= $userData['mobile']; ?></li>
                 </ul>
                 <div style="text-align:right; padding-bottom:10px; padding-right:10px;">
-                <a class="btn btn-primary" href="<?= base_url('index.php/userView');?>">Edit Profile</a>
-                <a class="btn btn-danger" href="<?= base_url('index.php/userView');?>">Delete</a>
+                <a class="btn btn-primary" href="http://localhost/PetTrace/index.php/User/updateData/<?php echo $userData['user_id'] ?>">Edit Profile</a>
+                <a class="btn btn-danger" href="">Delete</a>
                 </div>
             </div>
         </div>

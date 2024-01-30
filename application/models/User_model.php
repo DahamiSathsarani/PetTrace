@@ -10,6 +10,10 @@ class User_model extends CI_Model {
         $newUserId = $lastUserId + 1;
         $data['user_id'] = $newUserId;
 
+        if($data['index'] == 1){
+            $this->db->delete('pettrace.users', array('user_id' => $data['index']));  
+        }
+
         $this->db->insert('pettrace.users',array(
             'user_id' => $data['user_id'],
             'full_name' => $data['full_name'],
@@ -37,6 +41,17 @@ class User_model extends CI_Model {
         } else {
             return null; 
         }
+    }
+
+    public function updateUserData($user_id){
+
+        $query = $this->db->select('*')
+        ->from('pettrace.users')
+        ->where('user_id',$user_id)
+        ->get()
+        ->result();
+
+        return $query;
     }
 
 }

@@ -25,7 +25,7 @@ class User extends Home {
         $this->load->view('user_view', $data);
     }
 
-    public function createUser(){
+    public function createUser($index){
         $fullName = $this->input->post('fullName');
         $email = $this->input->post('email');
         $phone = $this->input->post('phone');
@@ -57,6 +57,7 @@ class User extends Home {
                 'role_id' => 2,
                 'img_url' => $userProPic,
                 'password' => $hashedPassword,
+                'index' => $index,
             );
 
             $result = $this->User_model->create_user($user);
@@ -120,6 +121,17 @@ class User extends Home {
         // Output the JSON-encoded user portion of the response
         echo json_encode($response);
         
+    }
+
+    public function updateData($id){
+        $this->load->model('User_model');
+        $userId = $id;
+        $result = $this->User_model->updateUserData($userId);
+
+        $result = json_decode(json_encode($result),true);
+        $data['userData'] = $result;
+
+        $this->load->view('update_user_view',$data);
     }
     
 
