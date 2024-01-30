@@ -8,6 +8,7 @@
     }
 
     .CategoryCard{
+        text-decoration: none;
         cursor: pointer;
         box-shadow: 0 0 10px gray;
         transition: 0.1s;
