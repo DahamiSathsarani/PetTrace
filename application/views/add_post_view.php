@@ -7,6 +7,8 @@
       width: 100%;
       height: 100vh;
       display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .image{
@@ -72,6 +74,18 @@
       width: 18%;
       height: 28px;
     }
+    .footer{
+        width: 100%;
+        background-color: #6504b5;
+        display: flex;
+        justify-content: center;
+        padding: 20px 0;
+    }
+
+    i{
+        color: #fff;
+        font-size: 30px;
+    }
 
     button{
       width: 20%;
@@ -83,37 +97,55 @@
     }
 </style>
 
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #6504b5;">
+    <div class="container">
+      <div style="width: 80%; border-right: solid #fff">
+        <a class="navbar-brand" href="<?= base_url('index.php/homepage');?>">PetTrace</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div style="width: 20%;">
+        <a id="userName" class="navbar-brand m-3" href="#"></a>
+        <a class="navbar-brand m-3" href="<?= base_url('index.php/signin');?>">Sign Out</a>
+      </div>
+    </div>
+</nav>
+
 <div class="background">
   <div class="register_card">
     <div class="registerForm">
+    <div class="RegisterHeader">
+        <h2 style="color: #6504b5; font-size: 40px;">Fill The Details</h2>
+      </div>
       <div class="RegisterContent">
         <div class='form'>
           <div>
-            <label htmlFor="name">Pet Name :</label><br>
+            <strong><label htmlFor="name">Pet Name :</label></strong><br>
             <input type="text" id="name" name="name"/>
           </div>
           <div>
-            <label for="category">Select Category:</label>
+            <strong><label for="category">Select Category:</label></strong><br>
             <select id="category" name="category"></select>
           </div>
           <div>
-            <label htmlFor="breed">Breed :</label><br>
+            <strong><label htmlFor="breed">Breed :</label></strong><br>
             <input type="text" id="breed" name="breed"/>
           </div>
           <div>
-            <label htmlFor="color">Color :</label><br>
+            <strong><label htmlFor="color">Color :</label></strong><br>
             <input type="text" id="color" name="color"/>
           </div>
           <div>
-            <label htmlFor="date">Lost Date :</label><br>
+            <strong><label htmlFor="date">Lost Date :</label></strong><br>
             <input type="text" id="date" name="date"/>
           </div>
           <div>
-            <label htmlFor="description">Description :</label><br>
+            <strong><label htmlFor="description">Description :</label></strong><br>
             <input type="text" id="description" name="description"/>
           </div>
           <div>
-            <label htmlFor="petPic">Upload Picture :</label>
+            <strong><label htmlFor="petPic">Upload Picture :</label></strong><br>
             <input type="file" id="petPic" name="petPic"/>
           </div>
           <!-- Add a hidden input for user_id -->
@@ -127,7 +159,47 @@
   </div>
 </div>
 
+<div class="footer mt-5 text-light py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="mb-4">PetTrace</h2>
+                <h5>Contact Us</h5>
+                <p>Email: info@pettrace.com</p>
+                <p>Phone: +123 456 789</p>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end">
+                <div class="social-icons">
+                    <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-light me-3"><i class="bi bi-youtube"></i></a>
+                    <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <p class="mt-4 text-center">&copy; 2024 PetTrace. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
+
+$(document).ready(function () {
+        let data = sessionStorage.getItem("userData");
+        let userData = JSON.parse(data);
+
+        var firstName = userData.full_name.split(' ')[0];
+
+        var userName = $('#userName');
+        userName.append(firstName);
+    })
+
+    document.getElementById('userName').addEventListener('click', function() {
+        var userData = sessionStorage.getItem("userData");
+        window.location.href = "http://localhost/PetTrace/index.php/profile?userData=" + encodeURIComponent(userData);
+    });
 
         function postData(e){
           e.preventDefault();
