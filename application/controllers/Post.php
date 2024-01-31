@@ -21,6 +21,19 @@ class Post extends CI_Controller {
         $this->load->view('post_view', $data);
     }
 
+    public function my_post_view() {
+        $postDataParam = $this->input->get('postData');
+        $postData = json_decode(urldecode($postDataParam), true);
+
+        $this->load->model('Category_model');
+        $category_name = $this->Category_model->getCategoryName($postData['category_id']);
+
+        $data['postData'] = $postData;
+        $data['category_name'] = $category_name;
+        
+        $this->load->view('my_post_view', $data);
+    }
+
     public function getApprovedPosts() {
 
         $this->load->model('Post_model');

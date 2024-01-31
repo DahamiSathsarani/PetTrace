@@ -26,6 +26,14 @@
         height: 300px;
     }
 
+    .petName{
+        margin-top: 20px;
+    }
+
+    a{
+        margin-left: 10px;
+    }
+
     .footer{
         width: 100%;
         background-color: #6504b5;
@@ -38,7 +46,6 @@
         color: #fff;
         font-size: 30px;
     }
-
 </style>
 
 <!-- Nav Bar -->
@@ -57,52 +64,31 @@
     </div>
 </nav>
 
-<!-- body -->
+<!-- Main body -->
 <div class="container mt-5">
     <div class="row">
-    <?php ($userData) ?>
         <!-- Image column -->
         <div class="col-md-6">
-            <div class="card-image" style="margin-left: 10%;">
-                <img src="<?= base_url('uploads/'. $userData['img_url']); ?>" class="userImg" alt="User Profile Image" width="80%" height="80%">
-            </div>
-            <br>
-            <div class="card" style="width: 80%; padding-left:10px;">
-                <h3><p>Hello, <?= $userData['full_name']; ?> !</p></h3>
-                <ul style="font-size: 20px;">
-                    <li><strong>Email : </strong><?= $userData['email']; ?></li>
-                    <li><strong>Mobile : </strong><?= $userData['mobile']; ?></li>
-                </ul>
-                <div style="text-align:right; padding-bottom:10px; padding-right:10px;">
-                <a class="btn btn-primary" href="http://localhost/PetTrace/index.php/User/updateData/<?php echo $userData['user_id'] ?>">Edit Profile</a>
-                <a class="btn btn-danger" id="deleteButton" href="http://localhost/PetTrace/index.php/User/deleteUser/<?php echo $userData['user_id'] ?>">Delete</a>
-                </div>
+            <div class="card-image">
+                <img src="<?= base_url('uploads/' .$postData['img_url']); ?>" class="img-fluid" alt="Pet Image" width="500" height="200">
+                <h1 class="petName"> <?= $postData['pet_name']; ?> </h1>
             </div>
         </div>
 
         <!-- Content column -->
         <div class="col-md-6">
-            <div>
-                <h2>Posts</h2>
-                <div class="container mt-5">
-                <div class="row">
-                    <?php foreach ($userPosts as $post): ?>
-                        <div class="col-md-4 mb-4">
-                            <div class="card" onclick="redirectToPostView(<?= htmlspecialchars(json_encode($post), ENT_QUOTES, 'UTF-8'); ?>)">
-                                <?php if (!empty($post->img_url)): ?>
-                                    <img src="<?= base_url('uploads/' . $post->img_url); ?>" class="card-img-top pet_image" alt="<?= $post->pet_name; ?>">
-                                <?php else: ?>
-                                    <img src="<?= base_url('path_to_default_image/default.jpg'); ?>" class="card-img-top" alt="Default Image">
-                                <?php endif; ?>
-                                <div class="card-body">
-                                    <h5 class="card-title"><?= $post->pet_name; ?></h5>
-                                    <p class="card-text"><?= $post->color; ?></p>
-                                    <p class="card-text"><?= $post->breed; ?></p>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
+            <div class="card">
+                <div class="card-body">
+                <h2 class="mt-3">Pet Details</h2>
+                <ul>
+                    <li><strong>Breed:</strong> <?= $postData['breed']; ?> </li><br>
+                    <li><strong>Color:</strong> <?= $postData['color']; ?></li><br>
+                    <li><strong>Description:</strong> <?= $postData['description']; ?></li><br>
+                    <li><strong>Category:</strong> <?= $category_name; ?></li><br>
+                    <li><strong>Lost Date:</strong> <?= $postData['lost_date']; ?></li><br>
+                </ul>
+                <a class="btn btn-primary" href="<?= base_url('index.php/user_view');?>">Edit Post</a>
+                <a class="btn btn-danger" href="<?= base_url('index.php/user_view');?>">Delete</a>
                 </div>
             </div>
         </div>
@@ -135,7 +121,9 @@
     </div>
 </div>
 
-<script type="text/javascript">
+
+
+<script>
     $(document).ready(function () {
         let data = sessionStorage.getItem("userData");
         let userData = JSON.parse(data);
@@ -151,10 +139,10 @@
         window.location.href = "http://localhost/PetTrace/index.php/profile?userData=" + encodeURIComponent(userData);
     });
 
-    function redirectToPostView(post) {
-        var url = "http://localhost/PetTrace/index.php/Post/my_post_view?postData=" + encodeURIComponent(JSON.stringify(post));
-        window.location.href = url;
-    }
-    </script>
+
+    document.getElementById('showAlertBtn').addEventListener('click', function() {
+        document.getElementById('successAlert').style.display = 'block';
+    });
+</script>
 
 <?php $this->load->view('footer'); ?>
