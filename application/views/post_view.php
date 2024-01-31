@@ -26,6 +26,10 @@
         height: 300px;
     }
 
+    .petName{
+        margin-top: 20px;
+    }
+
     .footer{
         width: 100%;
         background-color: #6504b5;
@@ -63,6 +67,7 @@
         <div class="col-md-6">
             <div class="card-image">
                 <img src="<?= base_url('uploads/' .$postData['img_url']); ?>" class="img-fluid" alt="Pet Image" width="500" height="200">
+                <h1 class="petName"> <?= $postData['pet_name']; ?> </h1>
             </div>
         </div>
 
@@ -72,8 +77,8 @@
                 <div class="card-body">
                 <h2 class="mt-3">Pet Details</h2>
                 <ul>
-                    <li><strong>Breed:</strong> <?= $postData['pet_name']; ?> </li><br>
-                    <li><strong>Color:</strong> <?= $postData['breed']; ?></li><br>
+                    <li><strong>Breed:</strong> <?= $postData['breed']; ?> </li><br>
+                    <li><strong>Color:</strong> <?= $postData['color']; ?></li><br>
                     <li><strong>Description:</strong> <?= $postData['description']; ?></li><br>
                     <li><strong>Category:</strong> <?= $category_name; ?></li><br>
                     <li><strong>Lost Date:</strong> <?= $postData['lost_date']; ?></li><br>
