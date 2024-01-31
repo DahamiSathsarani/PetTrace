@@ -1,3 +1,3 @@
 # PetTrace
 # Admin email - admin1@gmail.com
-# Admin password - admin
+# Admin password - admin1
