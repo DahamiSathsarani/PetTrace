@@ -61,6 +61,11 @@ input {
     padding: 5px;
 }
 
+a{
+  text-decoration: none;
+  margin-top: 10px;
+}
+
 .LoginButton {
     width: 100%;
     height: 20%;
@@ -68,6 +73,7 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
     button{
